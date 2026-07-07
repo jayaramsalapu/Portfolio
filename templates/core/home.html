@@ -218,106 +218,48 @@
 
         <div class="projects-grid" data-aos="fade-up">
             {% for project in featured_projects %}
-                <div class="glass-card project-card">
-                    <div class="project-thumbnail-wrapper">
-                        {% if project.featured %}
-                            <div class="project-featured-ribbon">Featured</div>
-                        {% endif %}
-                        
-                        {% if project.thumbnail %}
-                            <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}">
-                        {% else %}
-                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop" alt="Default Project Thumbnail">
-                        {% endif %}
-                    </div>
-                    
-                    <div class="project-content">
-                        <h3 class="project-title">{{ project.title }}</h3>
-                        <p class="project-description">{{ project.description|truncatewords:18 }}</p>
-                        
-                        <div class="project-tags-list">
-                            <span class="project-tag">{{ project.category.name }}</span>
-                            {% for tech in project.technologies.all %}
-                                <span class="project-tag">{{ tech.name }}</span>
-                            {% endfor %}
+                <a href="{% url 'project_detail' project.slug %}" class="project-card-link" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-card glass-card">
+                        <div class="project-thumbnail-wrapper">
+                            {% if project.thumbnail %}
+                                <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" class="project-image" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop';">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop" alt="Placeholder Image" class="project-image">
+                            {% endif %}
                         </div>
-
-                        <div class="project-footer">
-                            <a href="{% url 'project_detail' project.slug %}" class="project-link-btn">
-                                View Project <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <div style="display: flex; gap: 12px; align-items: center;">
-                                {% if project.github %}
-                                    <a href="{{ project.github }}" target="_blank" class="project-git-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">{{ project.title }}</h3>
+                            
+                            <p class="project-card-description">
+                                {% if project.short_description %}
+                                    {{ project.short_description }}
+                                {% else %}
+                                    {{ project.description|striptags|truncatewords:20 }}
                                 {% endif %}
-                                {% if project.live_demo %}
-                                    <a href="{{ project.live_demo }}" target="_blank" class="project-git-btn" aria-label="Live Demo" style="font-size: 1.15rem;"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                {% endif %}
+                            </p>
+                            
+                            <div class="project-tech-badges">
+                                {% for tech in project.technologies.all %}
+                                    <span class="tech-badge"><i class="fa-solid fa-code-branch"></i> {{ tech.name }}</span>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="project-card-footer" style="margin-top: 15px;">
+                                <span class="btn-view-details">
+                                    View Project <i class="fa-solid fa-arrow-right"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             {% empty %}
-                <!-- Mockup Projects fallback matching mockup image -->
-                <!-- Card 1: Portfolio CMS -->
-                <div class="glass-card project-card" id="mock-project-portfolio">
-                    <div class="project-thumbnail-wrapper">
-                        <div class="project-featured-ribbon">Featured</div>
-                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop" alt="Portfolio CMS screenshot">
+                <div class="projects-empty-state">
+                    <div class="empty-state-icon-box">
+                        <i class="fa-regular fa-folder-open"></i>
                     </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Portfolio CMS</h3>
-                        <p class="project-description">A complete portfolio content management system built with Django, PostgreSQL, and custom dashboard metrics.</p>
-                        <div class="project-tags-list">
-                            <span class="project-tag">Django</span>
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">SQLite</span>
-                        </div>
-                        <div class="project-footer">
-                            <a href="#" class="project-link-btn">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                            <a href="https://github.com" target="_blank" class="project-git-btn"><i class="fa-brands fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2: ResuFit -->
-                <div class="glass-card project-card" id="mock-project-resufit">
-                    <div class="project-thumbnail-wrapper">
-                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=600&auto=format&fit=crop" alt="ResuFit screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">ResuFit – Resume Analyzer</h3>
-                        <p class="project-description">An AI-powered resume analyzer that parses PDF resumes and provides semantic recommendations.</p>
-                        <div class="project-tags-list">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">NLP</span>
-                            <span class="project-tag">Machine Learning</span>
-                        </div>
-                        <div class="project-footer">
-                            <a href="#" class="project-link-btn">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                            <a href="https://github.com" target="_blank" class="project-git-btn"><i class="fa-brands fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3: Blood Donation System -->
-                <div class="glass-card project-card" id="mock-project-blood-donation">
-                    <div class="project-thumbnail-wrapper">
-                        <img src="https://images.unsplash.com/photo-1615461066841-60a63788b202?q=80&w=600&auto=format&fit=crop" alt="Blood Donation System screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Blood Donation System</h3>
-                        <p class="project-description">A responsive platform to connect local blood bank donors with emergency room requests in real-time.</p>
-                        <div class="project-tags-list">
-                            <span class="project-tag">Django</span>
-                            <span class="project-tag">Bootstrap</span>
-                            <span class="project-tag">MySQL</span>
-                        </div>
-                        <div class="project-footer">
-                            <a href="#" class="project-link-btn">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                            <a href="https://github.com" target="_blank" class="project-git-btn"><i class="fa-brands fa-github"></i></a>
-                        </div>
-                    </div>
+                    <h3>No Projects Found</h3>
+                    <p>We are currently updating our portfolio. Please check back soon to see new projects!</p>
                 </div>
             {% endfor %}
         </div>

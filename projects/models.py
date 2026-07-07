@@ -26,36 +26,49 @@ class Project(models.Model):
     )
 
     title = models.CharField(max_length=200)
-
     slug = models.SlugField(unique=True, blank=True)
-
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE
     )
-
     technologies = models.ManyToManyField(Technology)
-
-    description = models.TextField()
-
+    
+    # Descriptions
+    short_description = models.TextField(blank=True, default='')
+    description = models.TextField(verbose_name="Full Description")  # Keeps original data
+    
+    # Detailed Documentation
+    development_process = models.TextField(blank=True, default='')
+    features = models.TextField(blank=True, default='')
+    challenges = models.TextField(blank=True, default='')
+    architecture = models.TextField(blank=True, default='')
+    future_improvements = models.TextField(blank=True, default='')
+    
+    # Links
     thumbnail = models.ImageField(upload_to="projects/")
-
     github = models.URLField(blank=True)
-
     live_demo = models.URLField(blank=True)
-
+    documentation_url = models.URLField(blank=True, default='')
+    
+    # Settings
     featured = models.BooleanField(default=False)
-
     status = models.CharField(
         max_length=20,
         choices=STATUS
     )
-
+    display_order = models.IntegerField(default=0, help_text="Ordering display index (lower comes first)")
+    
+    # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-    def save(self,*args,**kwargs):
-        self.slug = slugify(self.title)
-        super().save(*args,**kwargs)
+    class Meta:
+        ordering = ('display_order', '-created_at')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title 

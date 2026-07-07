@@ -13,9 +13,7 @@ def home(request):
 
     skills = Skill.objects.all()
 
-    featured_projects = Project.objects.filter(
-        featured=True
-    )[:6]
+    featured_projects = Project.objects.order_by('-featured', '-created_at')[:6]
 
     experiences = Experience.objects.all()[:3]
 
