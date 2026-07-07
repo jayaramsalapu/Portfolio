@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+
+# Database
+
+
+# Environment variables
+.env
+
+# VS Code
+.vscode/
+
+# Static files
+staticfiles/
+
+# Media files (optional)
+media/

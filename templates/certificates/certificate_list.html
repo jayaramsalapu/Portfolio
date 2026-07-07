@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Certificates
+{% endblock %}
+
+{% block content %}
+
+<h1>Certificates</h1>
+
+{% for certificate in certificates %}
+
+<h2>{{ certificate.title }}</h2>
+
+<p>{{ certificate.organization }}</p>
+
+<p>{{ certificate.issue_date }}</p>
+
+{% if certificate.verification_url %}
+
+<a href="{{ certificate.verification_url }}">
+    Verify Certificate
+</a>
+
+{% endif %}
+
+<hr>
+
+{% empty %}
+
+<p>No certificates added.</p>
+
+{% endfor %}
+
+{% endblock %}

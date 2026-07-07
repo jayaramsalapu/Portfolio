@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ project.title }}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ project.title }}</h1>
+
+{% if project.thumbnail %}
+    <img src="{{ project.thumbnail.url }}" width="300">
+{% endif %}
+
+<p>{{ project.description }}</p>
+
+<p><strong>Category:</strong> {{ project.category }}</p>
+
+<p><strong>Status:</strong> {{ project.status }}</p>
+
+<h3>Technologies</h3>
+
+<ul>
+    {% for tech in project.technologies.all %}
+        <li>{{ tech.name }}</li>
+    {% empty %}
+        <li>No technologies added.</li>
+    {% endfor %}
+</ul>
+
+<h3>Gallery</h3>
+
+{% for image in project.images.all %}
+    <img src="{{ image.image.url }}" width="250">
+{% empty %}
+    <p>No gallery images.</p>
+{% endfor %}
+
+{% if project.github %}
+<p>
+    <a href="{{ project.github }}">GitHub</a>
+</p>
+{% endif %}
+
+{% if project.live_demo %}
+<p>
+    <a href="{{ project.live_demo }}">Live Demo</a>
+</p>
+{% endif %}
+
+{% endblock %}

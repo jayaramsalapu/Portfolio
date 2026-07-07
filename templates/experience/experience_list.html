@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Experience
+{% endblock %}
+
+{% block content %}
+
+<h1>Experience</h1>
+
+{% for experience in experiences %}
+
+<h2>{{ experience.position }}</h2>
+
+<h4>{{ experience.company }}</h4>
+
+<p>{{ experience.location }}</p>
+
+<p>
+
+{{ experience.start_date }}
+
+-
+
+{% if experience.currently_working %}
+
+Present
+
+{% else %}
+
+{{ experience.end_date }}
+
+{% endif %}
+
+</p>
+
+<p>{{ experience.description }}</p>
+
+<hr>
+
+{% empty %}
+
+<p>No experience added yet.</p>
+
+{% endfor %}
+
+{% endblock %}

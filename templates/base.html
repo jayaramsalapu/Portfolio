@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Developer Portfolio of {{ profile.name }} - {{ profile.profession }}">
+    <title>
+        {% block title %}
+        {{ profile.name }} | Portfolio
+        {% endblock %}
+    </title>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Library CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <header class="navbar-header">
+        <div class="container navbar-container">
+            <a href="#home" class="navbar-logo" id="nav-logo-btn">
+              
+                <span>Portfolio</span>
+            </a>
+
+            <!-- Toggle button for mobile -->
+            <button class="mobile-hamburger" aria-label="Toggle Menu" id="mobile-hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="navbar-menu-wrapper">
+                <nav class="navbar-nav-list" id="navbar-main-nav">
+                    <a href="#home" class="navbar-nav-link active">Home</a>
+                    <a href="#about" class="navbar-nav-link">About</a>
+                    <a href="#skills" class="navbar-nav-link">Skills</a>
+                    <a href="#projects" class="navbar-nav-link">Projects</a>
+                    <a href="#experience" class="navbar-nav-link">Experience</a>
+                    <a href="#education" class="navbar-nav-link">Education</a>
+                    <a href="#certificates" class="navbar-nav-link">Certificates</a>
+                    <a href="#contact" class="navbar-nav-link">Contact</a>
+                </nav>
+
+                <!-- Download Resume CTA -->
+                {% if profile.resume %}
+                <a href="{{ profile.resume.url }}" target="_blank" class="btn navbar-cta-btn" id="nav-resume-btn">
+                    <i class="fa-solid fa-download"></i> Download Resume
+                </a>
+                {% else %}
+                <a href="#" class="btn navbar-cta-btn" id="nav-resume-btn-mock">
+                    <i class="fa-solid fa-download"></i> Download Resume
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-wrapper" id="footer-section">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <a href="#home" class="footer-logo" id="footer-logo-btn">
+                    <span>Portfolio</span>
+                </a>
+                <p class="footer-desc">
+                    Designing and engineering premium digital products, web applications, and interactive user experiences.
+                </p>
+                <div class="footer-social-wrapper">
+                    {% if profile.github %}
+                    <a href="{{ profile.github }}" target="_blank" class="footer-social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    {% else %}
+                    <a href="https://github.com" target="_blank" class="footer-social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    {% endif %}
+                    
+                    {% if profile.linkedin %}
+                    <a href="{{ profile.linkedin }}" target="_blank" class="footer-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    {% else %}
+                    <a href="https://linkedin.com" target="_blank" class="footer-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    {% endif %}
+                    
+                  
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-column">
+                <h4 class="footer-col-title">Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#home" class="footer-link">Home</a></li>
+                    <li><a href="#about" class="footer-link">About</a></li>
+                    <li><a href="#skills" class="footer-link">Skills</a></li>
+                    <li><a href="#projects" class="footer-link">Projects</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="footer-column">
+                <h4 class="footer-col-title">Services</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#skills" class="footer-link">Web Development</a></li>
+                    <li><a href="#skills" class="footer-link">Backend Development</a></li>
+                    <li><a href="#skills" class="footer-link">API Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect Info -->
+            <div class="footer-column">
+                <h4 class="footer-col-title">Connect</h4>
+                <div class="footer-contact-info-list">
+                    {% if profile.email %}
+                    <div class="footer-contact-item">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>{{ profile.email }}</span>
+                    </div>
+                    {% else %}
+                    <div class="footer-contact-item">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>john@example.com</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if profile.location %}
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>{{ profile.location }}</span>
+                    </div>
+                    {% else %}
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>New York, USA</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Tech-themed Abstract Background Decoration -->
+            <svg class="footer-branch-illustration" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1" opacity="0.1">
+                <circle cx="90" cy="90" r="40" stroke="var(--primary)" stroke-dasharray="2 2" />
+                <circle cx="90" cy="90" r="60" stroke="var(--accent)" stroke-dasharray="4 4" />
+                <circle cx="90" cy="90" r="80" stroke="var(--primary-light)" />
+            </svg>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; <span id="copyright-year">2026</span> {% if profile.name %}{{ profile.name }}{% else %}John Doe{% endif %}. All rights reserved.</p>
+            <p>Crafted with <i class="fa-solid fa-heart" style="color: var(--primary);"></i> & Code</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top-btn" aria-label="Back to Top" id="back-to-top-button">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- AOS Script Initialization -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100,
+                easing: 'ease-out-cubic'
+            });
+            document.getElementById('copyright-year').innerText = new Date().getFullYear();
+        });
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

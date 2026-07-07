@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+Education
+{% endblock %}
+
+{% block content %}
+
+<h1>Education</h1>
+
+{% for education in educations %}
+
+<h2>{{ education.degree }}</h2>
+
+<h4>{{ education.college }}</h4>
+
+<p>{{ education.field_of_study }}</p>
+
+<p>
+
+{{ education.start_date }}
+
+-
+
+{{ education.end_date }}
+
+</p>
+
+<p>CGPA : {{ education.cgpa }}</p>
+
+<p>{{ education.description }}</p>
+
+<hr>
+
+{% empty %}
+
+<p>No education details available.</p>
+
+{% endfor %}
+
+{% endblock %}
