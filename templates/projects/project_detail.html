@@ -8,39 +8,52 @@
 {% block content %}
 <div class="project-detail-wrapper" style="padding-top: 110px; min-height: 100vh;">
     <!-- Project Hero Banner -->
-    <section class="project-hero glass-card" style="background-image: linear-gradient(rgba(44, 30, 20, 0.85), rgba(44, 30, 20, 0.95)), url('{% if project.thumbnail %}{{ project.thumbnail.url }}{% endif %}');">
-        <div class="container project-hero-container">
-            <div class="project-hero-header">
-                <span class="project-hero-category">{{ project.category.name }}</span>
-                {% if project.featured %}
-                    <span class="project-hero-featured"><i class="fa-solid fa-star"></i> Featured Project</span>
+    <!-- Project Hero Banner -->
+    <section class="project-hero glass-card" style="background: linear-gradient(135deg, rgba(44, 30, 20, 0.98) 0%, rgba(74, 53, 37, 0.98) 100%); border: 1px solid rgba(139, 90, 43, 0.15); padding: 50px 40px; overflow: visible;">
+        <div class="container project-hero-container-flex">
+            <!-- Hero Left: Text Content -->
+            <div class="project-hero-text-content">
+                <div class="project-hero-header">
+                    <span class="project-hero-category">{{ project.category.name }}</span>
+                    {% if project.featured %}
+                        <span class="project-hero-featured"><i class="fa-solid fa-star"></i> Featured Project</span>
+                    {% endif %}
+                </div>
+                
+                <h1 class="project-hero-title">{{ project.title }}</h1>
+                
+                {% if project.short_description %}
+                    <p class="project-hero-short-desc">{{ project.short_description }}</p>
                 {% endif %}
+                
+                <!-- Quick Actions Buttons -->
+                <div class="project-hero-actions">
+                    {% if project.live_demo %}
+                        <a href="{{ project.live_demo }}" target="_blank" class="btn hero-action-btn live-btn">
+                            <i class="fa-solid fa-laptop"></i> Live Demo
+                        </a>
+                    {% endif %}
+                    {% if project.github %}
+                        <a href="{{ project.github }}" target="_blank" class="btn hero-action-btn github-btn">
+                            <i class="fa-brands fa-github"></i> View Code
+                        </a>
+                    {% endif %}
+                    {% if project.documentation_url %}
+                        <a href="{{ project.documentation_url }}" target="_blank" class="btn hero-action-btn doc-btn">
+                            <i class="fa-solid fa-book"></i> Documentation
+                        </a>
+                    {% endif %}
+                </div>
             </div>
-            
-            <h1 class="project-hero-title">{{ project.title }}</h1>
-            
-            {% if project.short_description %}
-                <p class="project-hero-short-desc">{{ project.short_description }}</p>
+
+            <!-- Hero Right: Mockup Thumbnail Image -->
+            {% if project.thumbnail %}
+            <div class="project-hero-image-box" data-aos="zoom-in" data-aos-delay="200">
+                <div class="project-thumbnail-mockup">
+                    <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" class="project-hero-img">
+                </div>
+            </div>
             {% endif %}
-            
-            <!-- Quick Actions Buttons -->
-            <div class="project-hero-actions">
-                {% if project.live_demo %}
-                    <a href="{{ project.live_demo }}" target="_blank" class="btn hero-action-btn live-btn">
-                        <i class="fa-solid fa-laptop"></i> Live Demo
-                    </a>
-                {% endif %}
-                {% if project.github %}
-                    <a href="{{ project.github }}" target="_blank" class="btn hero-action-btn github-btn">
-                        <i class="fa-brands fa-github"></i> View Code
-                    </a>
-                {% endif %}
-                {% if project.documentation_url %}
-                    <a href="{{ project.documentation_url }}" target="_blank" class="btn hero-action-btn doc-btn">
-                        <i class="fa-solid fa-book"></i> Documentation
-                    </a>
-                {% endif %}
-            </div>
         </div>
     </section>
 

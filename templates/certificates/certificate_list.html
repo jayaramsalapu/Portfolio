@@ -1,35 +1,90 @@
 {% extends "base.html" %}
 
 {% block title %}
-Certificates
+Certificates | Portfolio
 {% endblock %}
 
 {% block content %}
+<!-- Certificates Listing Section -->
+<section class="section-wrapper certificates-list-section" style="padding-top: 130px; min-height: 85vh;">
+    <div class="container">
+        
+        <!-- Page Header -->
+        <div class="certificates-page-header" style="margin-bottom: 45px;" data-aos="fade-down">
+            <a href="{% url 'home' %}#certificates" class="back-link-btn" style="margin-bottom: 15px; display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 600; font-size: 0.95rem; transition: var(--transition-fast);">
+                <i class="fa-solid fa-arrow-left-long"></i> Back to Home
+            </a>
+            <div class="section-label">Credentials</div>
+            <h2 class="section-title" style="font-size: 2.8rem; margin-bottom: 12px; color: var(--text-primary);">My Certificates</h2>
+            <p class="section-subtitle" style="color: var(--text-secondary); max-width: 650px; font-size: 1.05rem; line-height: 1.6;">
+                A verified record of my professional certifications, course completions, and technical credentials earned from recognized industry leaders and institutions.
+            </p>
+        </div>
 
-<h1>Certificates</h1>
+        <!-- Certificates Grid (Horizontal / Landscape Design) -->
+        <div class="certificates-list-grid">
+            {% for certificate in certificates %}
+                <div class="glass-card certificate-page-card" data-aos="fade-up">
+                    <div class="certificate-page-card-inner">
+                        
+                        <!-- Left Section: Icon / Thumbnail -->
+                        <div class="cert-left-sec">
+                            {% if certificate.certificate_image %}
+                                <img src="{{ certificate.certificate_image.url }}" alt="{{ certificate.title }}" class="cert-page-img" onerror="this.parentElement.innerHTML='<div class=&#34;cert-icon-placeholder&#34;><i class=&#34;fa-solid fa-award&#34;></i></div>';">
+                            {% else %}
+                                <div class="cert-icon-placeholder">
+                                    <i class="fa-solid fa-award"></i>
+                                </div>
+                            {% endif %}
+                        </div>
 
-{% for certificate in certificates %}
+                        <!-- Right Section: Content Details -->
+                        <div class="cert-right-sec">
+                            <div class="cert-header-info">
+                                <span class="cert-org-badge">{{ certificate.organization }}</span>
+                                <span class="cert-date-badge">
+                                    <i class="fa-solid fa-calendar-days"></i> {{ certificate.issue_date|date:"F Y" }}
+                                </span>
+                            </div>
+                            
+                            <h3 class="cert-card-title">{{ certificate.title }}</h3>
+                            
+                            {% if certificate.credential_id %}
+                                <div class="cert-id-info">
+                                    <span class="meta-label">Credential ID:</span>
+                                    <span class="meta-value font-mono">{{ certificate.credential_id }}</span>
+                                </div>
+                            {% endif %}
 
-<h2>{{ certificate.title }}</h2>
+                            <!-- Actions Row -->
+                            <div class="cert-actions-row">
+                                {% if certificate.verification_url %}
+                                    <a href="{{ certificate.verification_url }}" target="_blank" class="btn btn-secondary cert-action-btn-sm">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Verify
+                                    </a>
+                                {% endif %}
+                                
+                                {% if certificate.certificate_file %}
+                                    <a href="{{ certificate.certificate_file.url }}" target="_blank" class="btn btn-primary cert-action-btn-sm">
+                                        <i class="fa-solid fa-file-pdf"></i> View PDF
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
 
-<p>{{ certificate.organization }}</p>
-
-<p>{{ certificate.issue_date }}</p>
-
-{% if certificate.verification_url %}
-
-<a href="{{ certificate.verification_url }}">
-    Verify Certificate
-</a>
-
-{% endif %}
-
-<hr>
-
-{% empty %}
-
-<p>No certificates added.</p>
-
-{% endfor %}
-
+                    </div>
+                </div>
+            {% empty %}
+                <!-- Empty State -->
+                <div class="projects-empty-state" style="grid-column: 1 / -1; width: 100%; text-align: center; padding: 60px 20px;">
+                    <div class="empty-state-icon-box" style="width: 80px; height: 80px; background: rgba(139, 90, 43, 0.05); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2.2rem;">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 8px;">No Certificates Found</h3>
+                    <p style="color: var(--text-secondary); max-width: 400px; margin: 0 auto;">We are currently updating our credentials listing. Please check back soon!</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -4,11 +4,9 @@ from django.db import models
 class Skill(models.Model):
 
     CATEGORY_CHOICES = (
-        ("Frontend", "Frontend"),
-        ("Backend", "Backend"),
-        ("Database", "Database"),
-        ("DevOps", "DevOps"),
-        ("Tools", "Tools"),
+        ("Languages", "Languages"),
+        ("Frameworks", "Frameworks"),
+        ("Tools & Technologies", "Tools & Technologies"),
     )
 
     name = models.CharField(max_length=100)
