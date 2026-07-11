@@ -430,11 +430,11 @@ h6 {
 
 .hero-name {
     font-size: 3.8rem;
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
     color: black;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.05;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
 }
 
 .hero-profession-wrapper {
