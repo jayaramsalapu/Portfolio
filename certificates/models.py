@@ -16,12 +16,14 @@ class Certificate(models.Model):
 
     certificate_image = models.ImageField(
         upload_to="certificates/",
+        max_length=500,
         blank=True,
         null=True
     )
 
     certificate_file = models.FileField(
         upload_to="certificates/pdf/",
+        max_length=500,
         blank=True,
         null=True
     )

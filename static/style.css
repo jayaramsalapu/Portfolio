@@ -3032,6 +3032,14 @@ h6 {
     border: 1px solid transparent;
 }
 
+.mobile-bio {
+    display: none;
+}
+
+.desktop-bio {
+    display: block;
+}
+
 /* ==========================================================================
    RESPONSIVE ADJUSTMENTS
    ========================================================================== */
@@ -3048,6 +3056,38 @@ h6 {
 }
 
 @media (max-width: 767px) {
+    .mobile-bio {
+        display: block;
+    }
+
+    .desktop-bio {
+        display: none;
+    }
+
+    /* Short Footer for Mobile */
+    .footer-wrapper {
+        padding: 40px 0 20px !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .footer-column {
+        gap: 12px !important;
+    }
+
+    .footer-column:nth-child(2),
+    .footer-column:nth-child(3) {
+        display: none !important;
+    }
+
+    .footer-desc {
+        display: none !important;
+    }
+
     .skills-badges-wrapper {
         gap: 12px;
     }

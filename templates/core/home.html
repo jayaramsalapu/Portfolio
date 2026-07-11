@@ -95,16 +95,23 @@
                     <i class="fa-regular fa-user"></i>
                 </div>
                 <div class="about-bio-text">
-                    {% if profile.bio %}
-                        {{ profile.bio|safe }}
-                    {% else %}
+                    <div class="desktop-bio">
+                        {% if profile.bio %}
+                            {{ profile.bio|safe }}
+                        {% else %}
+                            <p>
+                                I'm a passionate Software Developer with a strong focus on building high-performance web applications with clean, efficient, and maintainable code. Over the years, I have honed my skills in frontend aesthetics and robust backend architectures.
+                            </p>
+                            <p>
+                                My approach combines visual layout precision with database efficiency, bridging the gap between design and functionality. I enjoy working on challenging projects that push the envelope of modern technology.
+                            </p>
+                        {% endif %}
+                    </div>
+                    <div class="mobile-bio">
                         <p>
-                            I'm a passionate Software Developer with a strong focus on building high-performance web applications with clean, efficient, and maintainable code. Over the years, I have honed my skills in frontend aesthetics and robust backend architectures.
+                            I am an aspiring Software Engineer passionate about building practical and impactful applications. I have experience developing projects that solve real-world problems, including AI-powered applications.
                         </p>
-                        <p>
-                            My approach combines visual layout precision with database efficiency, bridging the gap between design and functionality. I enjoy working on challenging projects that push the envelope of modern technology.
-                        </p>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
 
@@ -478,43 +485,5 @@
     </div>
 </section>
 
-<!-- ==========================================================================
-     CONTACT CTA SECTION (TECH DECORATION)
-     ========================================================================== -->
-<section class="section-wrapper contact-cta-wrapper" id="contact" style="padding-bottom: 60px;">
-    <div class="container" data-aos="zoom-in">
-        <div class="glass-card contact-cta-card">
-            <div class="contact-cta-left">
-                <!-- Premium Tech Collaboration SVG Graphic -->
-                <svg class="contact-cta-ill" viewBox="0 0 100 100" fill="none">
-                    <!-- Outer glowing ring -->
-                    <circle cx="50" cy="50" r="40" stroke="var(--primary-light)" stroke-width="1.5" stroke-dasharray="4 4" />
-                    <!-- Code window / bracket symbol -->
-                    <rect x="25" y="30" width="50" height="40" rx="6" fill="var(--bg-base)" stroke="var(--primary)" stroke-width="2.5" />
-                    <line x1="32" y1="38" x2="42" y2="38" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" />
-                    <line x1="32" y1="46" x2="58" y2="46" stroke="var(--text-secondary)" stroke-width="2" stroke-linecap="round" />
-                    <line x1="32" y1="54" x2="48" y2="54" stroke="var(--text-secondary)" stroke-width="2" stroke-linecap="round" />
-                    <!-- Floating abstract nodes -->
-                    <circle cx="20" cy="35" r="4" fill="var(--accent)" />
-                    <circle cx="80" cy="60" r="5" fill="var(--primary)" />
-                    <circle cx="75" cy="25" r="3" fill="var(--primary-light)" />
-                    <!-- Curved connecting lines -->
-                    <path d="M20,39 Q30,55 50,55" stroke="var(--accent)" stroke-width="1" stroke-dasharray="2 2" fill="none" />
-                </svg>
 
-                <div class="contact-cta-text-box">
-                    <h3 class="contact-cta-title">Let's Work Together</h3>
-                    <p class="contact-cta-subtitle">
-                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Get in touch action button linking to footer contact info -->
-            <a href="mailto:{% if profile.email %}{{ profile.email }}{% else %}john@example.com{% endif %}" class="btn btn-primary contact-cta-btn" id="contact-get-in-touch-btn">
-                Get In Touch <i class="fa-solid fa-arrow-right-long"></i>
-            </a>
-        </div>
-    </div>
-</section>
 {% endblock %}
