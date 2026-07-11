@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 /* ==========================================================================
    DESIGN TOKENS & SYSTEM VARIABLES
@@ -33,8 +33,8 @@
     --border-color: rgba(139, 90, 43, 0.08);
 
     /* Typography */
-    --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
 
     /* Border Radius */
     --radius-sm: 8px;
@@ -121,9 +121,10 @@ h4,
 h5,
 h6 {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.25;
     color: var(--dark-coffee);
+    letter-spacing: 0.02em;
 }
 
 /* Container */
@@ -263,20 +264,24 @@ h6 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 85px;
+    height: 70px;
     z-index: 1000;
     transition: var(--transition-smooth);
     display: flex;
     align-items: center;
+    background: rgba(250, 247, 242, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(139, 90, 43, 0.12);
 }
 
 .navbar-header.scrolled {
-    height: 75px;
-    background: rgba(255, 255, 255, 0.85);
+    height: 60px;
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 4px 30px rgba(139, 90, 43, 0.06);
-    border-bottom: 1px solid rgba(139, 90, 43, 0.08);
+    box-shadow: 0 4px 30px rgba(139, 90, 43, 0.08);
+    border-bottom: 1px solid rgba(139, 90, 43, 0.22);
 }
 
 .navbar-container {
@@ -292,8 +297,9 @@ h6 {
     gap: 10px;
     font-family: var(--font-heading);
     font-size: 1.45rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--dark-coffee);
+    letter-spacing: 0.03em;
 }
 
 .navbar-logo img,
@@ -424,10 +430,11 @@ h6 {
 
 .hero-name {
     font-size: 3.8rem;
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     color: black;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.05;
+    letter-spacing: -0.02em;
 }
 
 .hero-profession-wrapper {
@@ -922,11 +929,12 @@ h6 {
 
 .project-card-title {
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
     font-family: var(--font-heading);
     margin: 0;
     transition: color 0.3s ease;
+    letter-spacing: 0.01em;
 }
 
 .project-card:hover .project-card-title {
@@ -1260,6 +1268,9 @@ h6 {
 
 .timeline-company {
     color: var(--coffee-brown);
+    font-style: italic;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
 }
 
 .timeline-date {
@@ -1313,14 +1324,16 @@ h6 {
 
 .education-degree {
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
 }
 
 .education-college {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--coffee-brown);
     font-weight: 500;
+    font-style: italic;
+    font-family: var(--font-heading);
 }
 
 .education-meta {
@@ -1391,15 +1404,17 @@ h6 {
 
 .certificate-title {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
     padding-right: 18px;
 }
 
 .certificate-organization {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--coffee-brown);
     font-weight: 500;
+    font-style: italic;
+    font-family: var(--font-heading);
 }
 
 .certificate-meta {
@@ -1520,8 +1535,9 @@ h6 {
     gap: 10px;
     font-family: var(--font-heading);
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--dark-coffee);
+    letter-spacing: 0.03em;
 }
 
 .footer-logo i {
@@ -1537,11 +1553,12 @@ h6 {
 
 .footer-col-title {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--dark-coffee);
     font-family: var(--font-heading);
     position: relative;
     padding-bottom: 8px;
+    letter-spacing: 0.02em;
 }
 
 .footer-col-title::after {
@@ -1684,7 +1701,7 @@ h6 {
 /* Laptops / Smaller Desktops */
 @media (max-width: 1024px) {
     .hero-name {
-        font-size: 3.8rem;
+        font-size: 3.2rem;
     }
 
     .hero-grid {
@@ -1729,15 +1746,15 @@ h6 {
 /* Tablets (Portrait) */
 @media (max-width: 768px) {
     .navbar-header {
-        height: 75px;
+        height: 60px;
     }
 
     .navbar-menu-wrapper {
         position: fixed;
-        top: 75px;
+        top: 60px;
         left: 0;
         width: 100%;
-        height: calc(100vh - 75px);
+        height: calc(100vh - 60px);
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
@@ -1783,7 +1800,7 @@ h6 {
     }
 
     .hero-name {
-        font-size: 3.5rem;
+        font-size: 2.6rem;
     }
 
     .hero-tagline {
@@ -1846,7 +1863,7 @@ h6 {
     }
 
     .hero-name {
-        font-size: 2.6rem;
+        font-size: 2rem;
     }
 
     .hero-profession-wrapper {
@@ -1969,11 +1986,12 @@ h6 {
 .project-hero-title {
     font-family: var(--font-heading);
     font-size: 2.8rem;
-    font-weight: 800;
+    font-weight: 600;
     line-height: 1.2;
     margin-bottom: 15px;
     color: #FFFFFF;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.02em;
 }
 
 .project-hero-short-desc {
@@ -2060,13 +2078,14 @@ h6 {
 .project-section-title {
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 20px;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
     display: flex;
     align-items: center;
     transition: var(--transition-fast);
+    letter-spacing: 0.02em;
 }
 
 .project-rich-content {
@@ -2087,7 +2106,8 @@ h6 {
     color: var(--text-primary);
     margin-top: 32px;
     margin-bottom: 16px;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
 .project-rich-content h2 {
@@ -2214,11 +2234,12 @@ h6 {
 .sidebar-title {
     font-family: var(--font-heading);
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 18px;
     display: flex;
     align-items: center;
     gap: 8px;
+    letter-spacing: 0.02em;
 }
 
 .project-tech-list {
@@ -2299,11 +2320,12 @@ h6 {
 .gallery-section-title {
     font-family: var(--font-heading);
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 25px;
     display: flex;
     align-items: center;
     gap: 10px;
+    letter-spacing: 0.02em;
 }
 
 .gallery-grid {
@@ -2465,8 +2487,9 @@ h6 {
 .nav-project-title {
     font-family: var(--font-heading);
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
+    letter-spacing: 0.01em;
 }
 
 .project-nav-link-disabled {
@@ -2492,11 +2515,12 @@ h6 {
 .related-projects-title {
     font-family: var(--font-heading);
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 5px;
     display: flex;
     align-items: center;
     gap: 10px;
+    letter-spacing: 0.02em;
 }
 
 /* Responsive adjustments */
@@ -2624,9 +2648,10 @@ h6 {
 .details-column-title {
     font-size: 1.45rem;
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
     margin-top: 4px;
+    letter-spacing: 0.02em;
 }
 
 .details-column-view-all {
@@ -2706,6 +2731,8 @@ h6 {
 .timeline-company {
     font-weight: 600;
     color: var(--accent-hover);
+    font-style: italic;
+    font-family: var(--font-heading);
 }
 
 .timeline-date {
@@ -2773,15 +2800,17 @@ h6 {
 
 .education-degree {
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
     line-height: 1.3;
 }
 
 .education-college {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-secondary);
+    font-style: italic;
+    font-family: var(--font-heading);
 }
 
 .education-meta {
@@ -2866,15 +2895,17 @@ h6 {
 
 .certificate-title {
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
     line-height: 1.3;
 }
 
 .certificate-organization {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-secondary);
+    font-style: italic;
+    font-family: var(--font-heading);
 }
 
 .certificate-meta {
@@ -3001,9 +3032,10 @@ h6 {
 .cert-card-title {
     font-family: var(--font-heading);
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
     line-height: 1.4;
+    letter-spacing: 0.01em;
 }
 
 .cert-id-info {
